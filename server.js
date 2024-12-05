@@ -11,15 +11,19 @@ const {
 
 const app = express();
 app.use(cors({
-  origin: 'https://board-game-five.vercel.app/',
-  methods: ['POST','GET'],
+  origin: 'https://board-game-five.vercel.app',
+  methods: ['POST', 'GET'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
 }));
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin:'https://board-game-five.vercel.app/'
-  }
+    origin: 'https://board-game-five.vercel.app'
+  },
+  allowedHeaders: ['Content-Type'],
+  credentials: true
 });
 
 const othelloRooms = new Map();
