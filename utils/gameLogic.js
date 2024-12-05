@@ -48,12 +48,12 @@ const images = [
   {
     num: 1,
     img: '/img/IMG_7250.JPG',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 2,
     img: '/img/IMG_7253.JPG',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 3,
