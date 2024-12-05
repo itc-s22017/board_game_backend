@@ -10,8 +10,14 @@ const {
 } = require('./gameLogic');
 
 const app = express();
+// app.use(cors({
+//   origin: 'https://board-game-five.vercel.app',
+//   methods: ['POST', 'GET'],
+//   allowedHeaders: ['Content-Type'],
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: 'https://board-game-five.vercel.app',
+  origin: true,
   methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
@@ -19,9 +25,18 @@ app.use(cors({
 
 const server = http.createServer(app);
 
+// const io = new Server(server, {
+//   cors: {
+//     origin: 'https://board-game-five.vercel.app',
+//     methods: ['GET', 'POST'],
+//     allowedHeaders: ['Content-Type'],
+//     credentials: true
+//   }
+// });
+
 const io = new Server(server, {
   cors: {
-    origin: 'https://board-game-five.vercel.app',
+    origin: true,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     credentials: true
