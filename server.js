@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
   origin: ['https://board-game-five.vercel.app'],
   methods: ['POST', 'GET'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type','x-requested-with'],
   credentials: true,
 }));
 
@@ -30,7 +30,7 @@ const io = new Server(server, {
   cors: {
     origin: ['https://board-game-five.vercel.app'],
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type','x-requested-with'],
     credentials: true
   }
 });
