@@ -11,15 +11,14 @@ const {
 
 const app = express();
 app.use(cors({
-  origin: true,
-  methods: [],
-  allowedHeaders: ['Content-Type']
+  origin: 'https://board-game-five.vercel.app/',
+  methods: ['POST','GET'],
 }));
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin:true
+    origin:'https://board-game-five.vercel.app/'
   }
 });
 
