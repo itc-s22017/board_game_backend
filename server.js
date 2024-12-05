@@ -14,7 +14,7 @@ app.use(cors({
   origin: 'https://board-game-five.vercel.app',
   methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type'],
-  credentials: true
+  credentials: true,
 }));
 
 const server = http.createServer(app);
@@ -30,6 +30,7 @@ const io = new Server(server, {
 
 app.get('/', (req, res) => {
   res.send('Hello World!'); 
+  res.set({ 'Access-Control-Allow-Origin': '*' });
 });
 
 const othelloRooms = new Map();
