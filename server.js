@@ -17,13 +17,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// app.use(cors({
-//   origin: true,
-//   methods: ['POST', 'GET'],
-//   allowedHeaders: ['Content-Type'],
-//   credentials: true,
-// }));
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -35,18 +28,8 @@ const io = new Server(server, {
   }
 });
 
-// const io = new Server(server, {
-//   cors: {
-//     origin: true,
-//     methods: ['GET', 'POST'],
-//     allowedHeaders: ['Content-Type'],
-//     credentials: true
-//   }
-// });
-
 app.get('/', (req, res) => {
-  res.send('Hello World!');
-  res.set({ 'Access-Control-Allow-Origin': '*' });
+  return res.send('Hello World!');
 });
 
 const othelloRooms = new Map();
