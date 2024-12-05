@@ -11,9 +11,9 @@ const {
 
 const app = express();
 app.use(cors({
-  origin: ['https://board-game-five.vercel.app'],
+  origin: ['https://board-game-five.vercel.app', 'https://board-game-git-master-itcs22017s-projects.vercel.app', 'https://board-game-812kd8a8c-itcs22017s-projects.vercel.app/'],
   methods: ['POST', 'GET'],
-  allowedHeaders: ['Content-Type','x-requested-with'],
+  allowedHeaders: ['Content-Type', 'x-requested-with'],
   credentials: true,
 }));
 
@@ -28,9 +28,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ['https://board-game-five.vercel.app'],
+    origin: ['https://board-game-five.vercel.app', 'https://board-game-git-master-itcs22017s-projects.vercel.app', 'https://board-game-812kd8a8c-itcs22017s-projects.vercel.app/'],
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type','x-requested-with'],
+    allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
   }
 });
@@ -45,7 +45,7 @@ const io = new Server(server, {
 // });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!'); 
+  res.send('Hello World!');
   res.set({ 'Access-Control-Allow-Origin': '*' });
 });
 
@@ -716,7 +716,7 @@ io.on('connection', (socket) => {
 
 
 
-const port = process.env.PORT || 4000; 
+const port = process.env.PORT || 4000;
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
