@@ -11,7 +11,7 @@ const {
 
 const app = express();
 app.use(cors({
-  origin: ['https://board-game-five.vercel.app', 'https://board-game-git-master-itcs22017s-projects.vercel.app', 'https://board-game-812kd8a8c-itcs22017s-projects.vercel.app/'],
+  origin: ['https://board-game-five.vercel.app', 'http://localhost:3000'],
   methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type', 'x-requested-with'],
   credentials: true,
@@ -21,7 +21,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ['https://board-game-five.vercel.app', 'https://board-game-git-master-itcs22017s-projects.vercel.app', 'https://board-game-812kd8a8c-itcs22017s-projects.vercel.app/'],
+    origin: ['https://board-game-five.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
@@ -507,7 +507,9 @@ io.on('connection', (socket) => {
           secondCard.isMatched = true;
           currentPlayerIndex % 2 === 0 ? room.red += 1 : room.blue += 1
           room.players[currentPlayerIndex].contribution += 10
-          console.log(room.players)
+        } else {
+          const nextPlayerIndex = room.currentPlayerIndex + 1
+          room.currentPlayerIndex = nextPlayerIndex % playersLimit
         }
 
         const redContribution = room.players.reduce((sum, player, index) => {
@@ -547,8 +549,7 @@ io.on('connection', (socket) => {
           });
           return;
         }
-        const nextPlayerIndex = room.currentPlayerIndex + 1
-        room.currentPlayerIndex = nextPlayerIndex % playersLimit
+
 
         io.to(roomId).emit('updateShinkeiGameState', {
           cards: room.cards,
