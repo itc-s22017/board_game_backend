@@ -11,7 +11,7 @@ const {
 
 const app = express();
 app.use(cors({
-  origin: ['https://board-game-five.vercel.app', 'http://localhost:3000'],
+  origin: ['https://board-game-five.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
   methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type', 'x-requested-with'],
   credentials: true,
@@ -21,7 +21,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ['https://board-game-five.vercel.app', 'http://localhost:3000'],
+    origin: ['https://board-game-five.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
@@ -55,7 +55,6 @@ io.on('connection', (socket) => {
 
   socket.on('sendBubbleMessage', ({ roomId, message, playerId }) => {
     io.to(roomId).emit('receiveBubbleMessage', { message, playerId });
-    console.log(playerId)
   });
 
   socket.on('existroom', game => {
@@ -81,7 +80,6 @@ io.on('connection', (socket) => {
     const GAME = getGameRooms(game);
     if (GAME.has(roomId)) {
       const room = GAME.get(roomId);
-      console.log(room)
       if (!room.players.some(player => player !== null && player.id === socket.id)) {
         const activePlayers = room.players.filter(player => player !== null && player.id !== null).length;
 
@@ -140,7 +138,6 @@ io.on('connection', (socket) => {
               success: true,
               currentPlayer: currentPlayer,
             });
-            console.log('room:', currentPlayer);
 
             if (isIncludes % 2 === 0) {
               // blue team
@@ -312,9 +309,7 @@ io.on('connection', (socket) => {
           if (partnerPlayer !== null) {
             room.players[playerIndex] = partnerPlayer;
             room.flippedCardIndex = []
-            console.log('room players: ' + room.players);
           } else {
-            console.log('room players: ' + room.players);
             console.log('２人いなくなったよお')
           }
         } else {
@@ -375,9 +370,7 @@ io.on('connection', (socket) => {
 
           if (partnerPlayer !== null) {
             room.players[playerIndex] = partnerPlayer;
-            console.log('room players: ' + room.players);
           } else {
-            console.log('room players: ' + room.players);
             console.log('２人いなくなったよお')
           }
         } else {
@@ -426,9 +419,7 @@ io.on('connection', (socket) => {
 
           if (partnerPlayer !== null) {
             room.players[playerIndex] = partnerPlayer;
-            console.log('room players: ' + room.players);
           } else {
-            console.log('room players: ' + room.players);
             console.log('２人いなくなったよお')
           }
         } else {
@@ -540,11 +531,13 @@ io.on('connection', (socket) => {
           room.cards = initializeCard();
           room.currentPlayerIndex = 0;
           room.flippedCardIndex = [];
+          room.red = 0;
+          room.blue = 0;
 
           io.to(roomId).emit('updateShinkeiGameState', {
             cards: room.cards,
             currentPlayer: room.players[room.currentPlayerIndex].id,
-            winner: winner || null,
+            winner: winner,
             flippedCardIndex: room.flippedCardIndex
           });
           return;
@@ -559,7 +552,6 @@ io.on('connection', (socket) => {
           flippedCardIndex: room.flippedCardIndex,
           winner: null
         });
-        console.log(`index:${room.flippedCardIndex.length}`)
         room.flippedCardIndex = [];
       } else {
         room.flippedCardIndex.push(index);
@@ -571,7 +563,6 @@ io.on('connection', (socket) => {
           flippedCardIndex: room.flippedCardIndex,
           winner: null
         });
-        console.log(`index:${room.flippedCardIndex.length}`)
       }
       io.to(roomId).emit('updatePlayers', room.players);
     }
@@ -615,9 +606,6 @@ io.on('connection', (socket) => {
 
     const { hit, blow } = calculateHitAndBlow(guess, correctAnswer);
     players[currentPlayerIndex].contribution += hit * 10 + blow * 5;
-
-    console.log(room.players)
-
 
     if (isTeamA) {
       guesses.teamA.push({ guess, hit, blow });
