@@ -359,8 +359,8 @@ io.on('connection', (socket) => {
       const playerIndex = room.players.findIndex(player => player?.id === socket.id);
 
       if (playerIndex !== -1) {
+        io.to(roomId).emit('dc', { dcPlayer: playerIndex + 1});
         room.players = room.players.map(player => player?.id === room.players[playerIndex]?.id ? null : player);
-
 
         if (room.isStarted) {
           const isEvenTeam = playerIndex % 2 === 0;
