@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
 
   socket.on('createothelloRoom', (roomId) => {
     if (!othelloRooms.has(roomId)) {
-      const newBoard = initializeBoard();
+      const newBoard = initializeBoard2();
       othelloRooms.set(roomId, {
         board: newBoard,
         currentPlayerIndex: 0,
@@ -246,6 +246,7 @@ io.on('connection', (socket) => {
           if (winner) {
             room.board = initializeBoard();
             room.currentPlayerIndex = 0;
+            room.isStarted = false
             io.to(roomId).emit('updateGameState', {
               board: room.board,
               currentPlayer: players[room.currentPlayerIndex]?.id,
@@ -531,6 +532,7 @@ io.on('connection', (socket) => {
           room.cards = initializeCard();
           room.currentPlayerIndex = 0;
           room.flippedCardIndex = [];
+          room.isStarted = false;
           room.red = 0;
           room.blue = 0;
 
