@@ -22,10 +22,10 @@ const server = http.createServer(app);
 const io = new Server(server, {
   connectionStateRecovery: {
     maxDisconnectionDuration: 60000,
-    skipMiddlewares: false,
+    skipMiddlewares: true,
   },
-  pingInterval: 2000,
-  pingTimeout: 5000,
+  pingInterval: 10000,
+  pingTimeout: 50000,
   cors: {
     origin: ['https://board-game-five.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
     methods: ['GET', 'POST'],
