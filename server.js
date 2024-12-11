@@ -25,6 +25,10 @@ const io = new Server(server, {
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
+  },
+  connectionStateRecovery: {
+    maxDisconnectionDuration: 10000,
+    skipMiddlewares: true,
   }
 });
 
@@ -360,7 +364,7 @@ io.on('connection', (socket) => {
       const playerIndex = room.players.findIndex(player => player?.id === socket.id);
 
       if (playerIndex !== -1) {
-        io.to(roomId).emit('dc', { dcPlayer: playerIndex + 1});
+        io.to(roomId).emit('dc', { dcPlayer: playerIndex + 1 });
         room.players = room.players.map(player => player?.id === room.players[playerIndex]?.id ? null : player);
 
         if (room.isStarted) {
