@@ -48,47 +48,47 @@ const images = [
   {
     num: 1,
     img: '/img/IMG_7250.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 2,
     img: '/img/IMG_7257.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 3,
     img: '/img/IMG_7258.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 4,
     img: '/img/bikkuri_2.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 5,
     img: '/img/banananeko.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num: 6,
     img: '/img/yamuneko.webp',
-    isMatched: true
+    isMatched: false
   },
   {
     num:7,
     img:'/img/neko21.webp',
-    isMatched:true
+    isMatched:false
   },
   {
     num:8,
     img:'/img/neko5.webp',
-    isMatched:true
+    isMatched:false
   },
   {
     num:9,
     img:'/img/neko4.webp',
-    isMatched:true
+    isMatched:false
   },
   {
     num:10,
