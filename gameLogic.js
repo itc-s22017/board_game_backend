@@ -47,57 +47,57 @@ const judge = [[0, 2], [1, 3]];
 const images = [
   {
     num: 1,
-    img: '/img/IMG_7250.JPG',
-    isMatched: false
+    img: '/img/IMG_7250.webp',
+    isMatched: true
   },
   {
     num: 2,
-    img: '/img/IMG_7253.JPG',
-    isMatched: false
+    img: '/img/IMG_7257.webp',
+    isMatched: true
   },
   {
     num: 3,
-    img: '/img/IMG_7254.JPG',
-    isMatched: false
+    img: '/img/IMG_7258.webp',
+    isMatched: true
   },
   {
     num: 4,
-    img: '/img/bikkuri_2.png',
-    isMatched: false
+    img: '/img/bikkuri_2.webp',
+    isMatched: true
   },
   {
     num: 5,
-    img: '/img/IMG_7255.png',
-    isMatched: false
+    img: '/img/banananeko.webp',
+    isMatched: true
   },
   {
     num: 6,
-    img: '/img/yamuneko.png',
-    isMatched: false
+    img: '/img/yamuneko.webp',
+    isMatched: true
   },
   {
     num:7,
-    img:'/img/neko.jpg',
-    isMatched:false
+    img:'/img/neko21.webp',
+    isMatched:true
   },
   {
     num:8,
-    img:'/img/neko2.jpeg',
-    isMatched:false
+    img:'/img/neko5.webp',
+    isMatched:true
   },
   {
     num:9,
-    img:'/img/neko3.jpeg',
-    isMatched:false
+    img:'/img/neko4.webp',
+    isMatched:true
   },
   {
     num:10,
-    img:'/img/neko4.jpeg',
+    img:'/img/neko3.webp',
     isMatched:false
   },
   {
     num:11,
-    img:'/img/neko5.jpeg',
+    img:'/img/neko2.webp',
     isMatched:false
   },
 ]
