@@ -20,10 +20,6 @@ app.use(cors({
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  connectionStateRecovery: {
-    maxDisconnectionDuration: 10000 * 6,
-    skipMiddlewares: true,
-  },
   cors: {
     origin: ['https://board-game-five.vercel.app', 'http://localhost:3000', 'http://localhost:3001'],
     methods: ['GET', 'POST'],
