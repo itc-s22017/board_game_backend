@@ -90,16 +90,6 @@ const images = [
     img:'/img/neko4.webp',
     isMatched:false
   },
-  {
-    num:10,
-    img:'/img/neko3.webp',
-    isMatched:false
-  },
-  {
-    num:11,
-    img:'/img/neko2.webp',
-    isMatched:false
-  },
 ]
 
 const initializeCard = () => {
