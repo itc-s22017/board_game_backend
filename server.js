@@ -27,6 +27,8 @@ const io = new Server(server, {
     allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
   },
+  pingInterval: 25000,
+  pingTimeout: 60000,
 });
 
 app.get('/', (req, res) => {
@@ -293,14 +295,16 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', (reason) => {
+    console.log(`切断されました。理由: ${reason}`);
+    socket.broadcast.emit('userDisconnected', { reason });
+
     // ----------------------Othello----------------------------
     othelloRooms.forEach((room, roomId) => {
       const playerIndex = room.players.findIndex(player => player?.id === socket.id);
 
       if (playerIndex !== -1) {
         room.players = room.players.map(player => player?.id === room.players[playerIndex]?.id ? null : player);
-
 
         if (room.isStarted) {
           const isEvenTeam = playerIndex % 2 === 0;
