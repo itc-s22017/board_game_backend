@@ -22,7 +22,7 @@ const calculateHitAndBlow = (guess, correctAnswer) => {
     const index = unmatchedAnswer.indexOf(digit);
     if (index !== -1) {
       blow++;
-      unmatchedAnswer.splice(index, 1); 
+      unmatchedAnswer.splice(index, 1);
     }
   });
 
@@ -76,19 +76,19 @@ const images = [
     isMatched: false
   },
   {
-    num:7,
-    img:'/img/neko21.webp',
-    isMatched:false
+    num: 7,
+    img: '/img/neko21.webp',
+    isMatched: false
   },
   {
-    num:8,
-    img:'/img/neko5.webp',
-    isMatched:false
+    num: 8,
+    img: '/img/neko5.webp',
+    isMatched: false
   },
   {
-    num:9,
-    img:'/img/neko4.webp',
-    isMatched:false
+    num: 9,
+    img: '/img/neko4.webp',
+    isMatched: false
   },
 ]
 
@@ -98,6 +98,36 @@ const initializeCard = () => {
     .sort((a, b) => 0.5 - Math.random());
 
   return shuffledImages
+}
+
+const yaraseCard = () => {
+  const cards = [
+    // 1列目（左から右）
+    { num: 1, img: '/img/IMG_7250.webp', isMatched: false, id: 1 },
+    { num: 1, img: '/img/IMG_7250.webp', isMatched: false, id: 2 },
+    { num: 6, img: '/img/IMG_7258.webp', isMatched: false, id: 3 },
+    { num: 7, img: '/img/bikkuri_2.webp', isMatched: false, id: 4 },
+    { num: 8, img: '/img/neko5.webp', isMatched: false, id: 5 },
+    { num: 7, img: '/img/bikkuri_2.webp', isMatched: false, id: 6 },
+
+    // 2列目（左から右）
+    { num: 3, img: '/img/IMG_7257.webp', isMatched: false, id: 7 },
+    { num: 2, img: '/img/neko2.webp', isMatched: false, id: 8 },
+    { num: 4, img: '/img/yamuneko.webp', isMatched: false, id: 9 },
+    { num: 9, img: '/img/neko21.webp', isMatched: false, id: 10 },
+    { num: 9, img: '/img/neko21.webp', isMatched: false, id: 11 },
+    { num: 5, img: '/img/banananeko.webp', isMatched: false, id: 12 },
+
+    // 3列目（左から右）
+    { num: 2, img: '/img/neko2.webp', isMatched: false, id: 13 },
+    { num: 3, img: '/img/IMG_7257.webp', isMatched: false, id: 14 },
+    { num: 5, img: '/img/banananeko.webp', isMatched: false, id: 15 },
+    { num: 6, img: '/img/IMG_7258.webp', isMatched: false, id: 16 },
+    { num: 8, img: '/img/neko5.webp', isMatched: false, id: 17 },
+    { num: 4, img: '/img/yamuneko.webp', isMatched: false, id: 18 }
+  ];
+
+  return cards
 }
 
 const checkShinkeiWinner = (room) => {
@@ -233,5 +263,6 @@ module.exports = {
   images,
   checkShinkeiWinner,
   createRandomNumber,
-  calculateHitAndBlow
+  calculateHitAndBlow,
+  yaraseCard
 };

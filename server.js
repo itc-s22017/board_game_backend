@@ -6,7 +6,8 @@ const {
   initializeBoard, initializeBoard2, makeMove,
   checkWinner, countStones, canMakeMove,
   judge, initializeCard, images, checkShinkeiWinner,
-  createRandomNumber, calculateHitAndBlow
+  createRandomNumber, calculateHitAndBlow,
+  yaraseCard
 } = require('./gameLogic');
 
 const app = express();
@@ -459,7 +460,7 @@ io.on('connection', (socket) => {
   // --------------------------Shinkei---------------------------------
   socket.on('createshinkeiRoom', (roomId) => {
     if (!shinkeiRooms.has(roomId)) {
-      const newCard = initializeCard();
+      const newCard = yaraseCard();
       shinkeiRooms.set(roomId, {
         cards: newCard,
         currentPlayerIndex: 0,
