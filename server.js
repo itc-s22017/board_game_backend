@@ -27,9 +27,9 @@ const io = new Server(server, {
     allowedHeaders: ['Content-Type', 'x-requested-with'],
     credentials: true
   },
-  pingInterval: 25000,
-  pingTimeout: 60000,
-});
+  // pingInterval: 25000,
+  // pingTimeout: 60000,
+  });
 
 app.get('/', (req, res) => {
   return res.send('Hello World!');
